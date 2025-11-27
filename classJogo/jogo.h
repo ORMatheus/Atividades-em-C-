@@ -15,6 +15,7 @@ class Jogo{
     string getNomeJogo() const;
     void setValorJogo(float valorJogo);
     void setHorasjogadas(int horasJogadas);
+    float valorPorHoras();
     void display();
 };
 
