@@ -22,7 +22,7 @@ class Music{
     //setters
 
     void setAno(string ano);
-    void setNota(string nota);
+    void setNota(float nota);
     void setNomeMusic(string nomeMusic);
     void setNomeArtista(string nomeArtista);
     void setAlbum(string album);

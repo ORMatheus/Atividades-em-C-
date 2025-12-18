@@ -9,6 +9,7 @@ Music::Music(string NomeMusic,string Artista,string Album,string Ano,float Nota)
 }
 
 string Music::getNomeMusic() const{
+    cout << "Nome da Musica" << this->nomeMusic;
     return this->nomeMusic;
 }
 
@@ -32,6 +33,20 @@ float Music::getNota() const{
 
 void Music::setAno(string ano){
     this->ano=ano;
-    cout << "Ano de lançamento:" <<ano;
 }
 
+void Music::setNota(float nota){
+    this->nota=nota;
+}
+
+void Music::setAlbum(string album){
+    this->album=album;
+}
+
+void Music::setNomeArtista(string nomeArtista){
+    this->artista=nomeArtista;
+}
+
+void Music::setNomeMusic(string nomeMusic){
+    this->nomeMusic=nomeMusic;
+}
