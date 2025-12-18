@@ -28,3 +28,10 @@ float Music::getNota() const{
     return this->nota;
 }
 
+//setters
+
+void Music::setAno(string ano){
+    this->ano=ano;
+    cout << "Ano de lançamento:" <<ano;
+}
+
