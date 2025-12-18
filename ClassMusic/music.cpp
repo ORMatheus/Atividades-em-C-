@@ -50,3 +50,12 @@ void Music::setNomeArtista(string nomeArtista){
 void Music::setNomeMusic(string nomeMusic){
     this->nomeMusic=nomeMusic;
 }
+
+void Music::display(){
+    cout << "Nome da musica:" << nomeMusic << endl;
+    cout << "Nomedo Artista:" << artista << endl;
+    cout << "Nome do album:" << album << endl;
+    cout <<"Ano de lançamento da musica:" << ano << endl;
+    cout << "Nota da musica:" << nota << endl;
+
+}
