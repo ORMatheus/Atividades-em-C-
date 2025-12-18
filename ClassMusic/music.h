@@ -15,7 +15,7 @@ class Music{
     
     string getNomeMusic()const;
     string getNomeArtista() const;
-    string getNomeAlgum() const ;
+    string getNomeAlbum() const ;
     string getAno() const ;
     float getNota() const;
 
