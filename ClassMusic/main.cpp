@@ -31,6 +31,12 @@ int main(){
         cout << "Cadastre uma nova Musica !!\n";
 
         cout << "Digite o nome da Musica:";
+
+        if(cin.peek()=='\n')`{
+            cin.ignore();
+        }
+        getline(cin,tempNomeMusica);
+
         
     }
 
