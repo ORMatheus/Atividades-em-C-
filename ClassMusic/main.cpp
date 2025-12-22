@@ -4,6 +4,8 @@
 #include <vector>
 #include <cctype>
 
+string paraMinusc(string texto){
+}
 
 
 using namespace std;
