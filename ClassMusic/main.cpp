@@ -11,6 +11,8 @@ using namespace std;
 int main(){
     vector<Music> musicas;
 
+    char s='s' ;
+
     system("pause");
     return 0;
 }
