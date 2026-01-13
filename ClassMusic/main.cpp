@@ -3,43 +3,73 @@
 #include <string>
 #include <vector>
 #include <cctype>
-
-string paraMinusc(string texto){
-    string copia= texto;
-    for(int i =0 ; i <copia.length() ; i++){
-        copia[i]=tolower(copia[i]);
-    }
-
-    return copia;
-}
-
+#include <limits>
 
 using namespace std;
 
+string paraMinusc(const string &texto){
+    string copia = texto;
+    for(size_t i = 0; i < copia.length(); ++i){
+        copia[i] = tolower((unsigned char)copia[i]);
+    }
+    return copia;
+}
+
 int main(){
     vector<Music> musicas;
-    char opcao='s' ;
-    while (opcao == 's' || opcao ='S'){
-        string tempNome;
+    char opcao = 's';
+    while (opcao == 's' || opcao == 'S'){
         string tempNomeMusica;
         string tempNomeArtista;
-        string TempNomeAlbum;
+        string tempNomeAlbum;
         string tempAno;
-        float tempNota;
-        bool jaExiste=false;
+        float tempNota = 0.0f;
+        bool jaExiste = false;
 
         cout << "Cadastre uma nova Musica !!\n";
 
-        cout << "Digite o nome da Musica:";
+        cout << "Digite o nome da Musica: ";
+        if(cin.peek() == '\n') cin.ignore();
+        getline(cin, tempNomeMusica);
 
-        if(cin.peek()=='\n')`{
-            cin.ignore();
+        for(size_t i = 0; i < musicas.size(); ++i){
+            if(paraMinusc(musicas[i].getNomeMusic()) == paraMinusc(tempNomeMusica)){
+                jaExiste = true;
+                break;
+            }
         }
-        getline(cin,tempNomeMusica);
 
-        
+        if(jaExiste){
+            cout << "Musica ja cadastrada.\n";
+        } else {
+            cout << "Digite o nome do Artista: ";
+            getline(cin, tempNomeArtista);
+
+            cout << "Digite o nome do Album: ";
+            getline(cin, tempNomeAlbum);
+
+            cout << "Digite o ano: ";
+            getline(cin, tempAno);
+
+            cout << "Digite a nota (ex: 8.5): ";
+            cin >> tempNota;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            Music m(tempNomeMusica, tempNomeArtista, tempNomeAlbum, tempAno, tempNota);
+            musicas.push_back(m);
+            cout << "Musica cadastrada com sucesso.\n";
+        }
+
+        cout << "Deseja cadastrar outra musica? (s/n): ";
+        cin >> opcao;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
+    cout << "\nMúsicas cadastradas:\n";
+    for(size_t i = 0; i < musicas.size(); ++i){
+        musicas[i].display();
+        cout << "---------------------\n";
+    }
     system("pause");
     return 0;
 }
