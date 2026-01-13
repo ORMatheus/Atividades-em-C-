@@ -26,6 +26,6 @@ class Music{
     void setNomeMusic(string nomeMusic);
     void setNomeArtista(string nomeArtista);
     void setAlbum(string album);
-    void display();
+    void display() const;
     
 };

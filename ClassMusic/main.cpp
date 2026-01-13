@@ -4,6 +4,7 @@
 #include <vector>
 #include <cctype>
 #include <limits>
+#include <algorithm>
 
 using namespace std;
 
@@ -48,21 +49,50 @@ int main(){
             cout << "Digite o nome do Album: ";
             getline(cin, tempNomeAlbum);
 
-            cout << "Digite o ano: ";
-            getline(cin, tempAno);
+            // validação do ano: apenas dígitos
+            cout << "Digite o ano (apenas numeros, ex: 2020): ";
+            while (true) {
+                getline(cin, tempAno);
+                bool ok = !tempAno.empty();
+                for (char c : tempAno) {
+                    if (!isdigit((unsigned char)c)) { ok = false; break; }
+                }
+                if (ok) break;
+                cout << "Ano invalido. Digite apenas numeros (ex: 2020): ";
+            }
 
-            cout << "Digite a nota (ex: 8.5): ";
-            cin >> tempNota;
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            // validação da nota: número float entre 0 e 10
+            while (true) {
+                cout << "Digite a nota (ex: 8.5): ";
+                if (!(cin >> tempNota)) {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Entrada invalida. Digite um numero (ex: 8.5).\n";
+                    continue;
+                }
+                if (tempNota < 0.0f || tempNota > 10.0f) {
+                    cout << "Nota deve estar entre 0 e 10. Tente novamente.\n";
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    continue;
+                }
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                break;
+            }
 
             Music m(tempNomeMusica, tempNomeArtista, tempNomeAlbum, tempAno, tempNota);
             musicas.push_back(m);
             cout << "Musica cadastrada com sucesso.\n";
         }
 
-        cout << "Deseja cadastrar outra musica? (s/n): ";
-        cin >> opcao;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        // validação da opção s/n
+        string opcaoStr;
+        while (true) {
+            cout << "Deseja cadastrar outra musica? (s/n): ";
+            getline(cin, opcaoStr);
+            if (opcaoStr.empty()) continue;
+            opcao = opcaoStr[0];
+            if (opcao == 's' || opcao == 'S' || opcao == 'n' || opcao == 'N') break;
+        }
     }
 
     cout << "\nMúsicas cadastradas:\n";
