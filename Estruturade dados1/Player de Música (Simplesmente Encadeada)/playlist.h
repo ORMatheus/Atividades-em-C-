@@ -1,4 +1,4 @@
-#include "music.h"
+#include <music.h>
 #include <iostream>
 
 class Node {
@@ -6,7 +6,7 @@ public:
     Music musica;
     Node* next;
 
-    Node() {
+    Node(){
         next = nullptr;
     }
 
@@ -35,4 +35,20 @@ class Playlist{
                 delete temp;
             }
         }
+        // função para adicionar ao final similar ao push_back em vetores
+        
+        void adicionarMusica(Music m){
+            Node* novoNo=new Node(m);
+        
+            if(head== nullptr){
+                head=novoNo;
+            }else{
+                Node* atual=head;
+                while(atual->next != nullptr){
+                    atual=atual->next;
+                }
+                atual->next=novoNo;
+            }
+        }
 };
+
