@@ -22,4 +22,9 @@ public:
 class Playlist{
     private:
         Node* head; // começo da lista
-}
+    
+    public:
+        Playlist():head(nullptr){}
+
+    //destrutor
+};
