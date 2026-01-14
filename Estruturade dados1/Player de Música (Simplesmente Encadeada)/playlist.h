@@ -1,20 +1,28 @@
-#include <music.h>
-#include <iostream>
+#ifndef PLAYLIST_H
+#define PLAYLIST_H
 
+#include "music.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
 class Node {
 public:
-    Music musica;
-    Node* next;
+    Music musica; // Seu objeto Music original
+    Node* next;   // O ponteiro para o próximo nó
 
-    Node(){
+    // Construtor padrão (nó "vazio")
+    Node() {
         next = nullptr;
     }
 
-    Node(const Music& m){
+    // Construtor com música
+    Node(Music m) {
         musica = m;
         next = nullptr;
     }
 };
+
 
 
 //lista para gerenciar os nos
@@ -50,5 +58,34 @@ class Playlist{
                 atual->next=novoNo;
             }
         }
+
+        //função para verificar duplicidade(serve para substituir o loop de vector)
+
+        bool existeMusica(string nomeBusca,string(*funcNormaliza)(const string&)){
+            Node* atual=head;
+            while (atual != nullptr)
+            {
+                if(funcNormaliza(atual->musica.getNomeMusic()) == funcNormaliza(nomeBusca)) {
+                    return true;
+                }
+                atual=atual->next;
+            }
+            return false;
+        }
+
+         // Função para exibir tudo
+    void exibirPlaylist() const {
+        if (head == nullptr) {
+            cout << "Playlist vazia!\n";
+            return;
+        }
+        Node* atual = head;
+        while (atual != nullptr) {
+            atual->musica.display(); // Reusa seu método display original
+            cout << "---------------------\n";
+            atual = atual->next;
+        }
+    }
 };
 
+#endif
