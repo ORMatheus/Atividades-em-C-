@@ -9,7 +9,7 @@ Music::Music(string NomeMusic,string Artista,string Album,string Ano,float Nota)
     this->nota      = Nota;
 }
 
-// ✅ Construtor padrão
+//  Construtor padrão
 Music::Music(){
     this->nomeMusic = "";
     this->artista   = "";
@@ -18,7 +18,7 @@ Music::Music(){
     this->nota      = 0.0f;
 }
 
-// ✅ Construtor simplificado
+//  Construtor simplificado
 Music::Music(string NomeMusic, string Artista){
     this->nomeMusic = NomeMusic;
     this->artista   = Artista;
