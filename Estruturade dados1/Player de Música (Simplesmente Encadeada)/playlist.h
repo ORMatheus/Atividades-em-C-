@@ -26,5 +26,13 @@ class Playlist{
     public:
         Playlist():head(nullptr){}
 
-    //destrutor
+    //destrutor para limpar a memoria ao fechar o programa
+        ~Playlist(){
+            Node* atual= head;
+            while(atual != nullptr){
+                Node* temp=atual;
+                atual=atual->next;
+                delete temp;
+            }
+        }
 };
