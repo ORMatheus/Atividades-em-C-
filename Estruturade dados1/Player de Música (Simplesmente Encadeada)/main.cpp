@@ -19,6 +19,7 @@ int main(){
     char continuar;
     cin >> continuar;
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
+
     while(continuar == 's' || continuar == 'S'){
         string nome;
         string artista;
@@ -48,7 +49,7 @@ int main(){
             Music m(nome,artista);
             playlist.adicionarMusica(m);
         }
-        cout << "\nDeseja adicionar outra musica?(s/n)";
+        cout << "\nDeseja adicionar outra musica?(s/n):";
         cin >> continuar;
         cin.ignore(numeric_limits<streamsize>::max(),'\n');
     }
